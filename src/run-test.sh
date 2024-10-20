@@ -9,6 +9,6 @@ until $(nc -zv postman-tests-api 5050); do
 done
 echo "Connected to postman-tests-api!"
 
-newman run /src/postman_collection.json -e /src/postman_environment.json
+newman run /src/postman_collection.json -e /src/postman_environment.json -r cli,json --reporter-json-export /app/report.json
 
 exit 0

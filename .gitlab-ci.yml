@@ -1,0 +1,23 @@
+stages:
+  - test
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: always
+    - when: never
+
+run-test:
+  stage: test
+  tags:
+    - mac-m1
+  artifacts:
+    paths:
+      - results/report.json
+  image:
+    name: ghcr.io/ordinal43/java-17-gradle:latest
+  script:
+    - docker compose up --exit-code-from postman-tests-newman
+    - docker cp postman-tests-newman:/app/report.json ./results/report.json
+    - docker compose down # Remember to run this to delete all container state!
+  allow_failure: true
