@@ -21,4 +21,6 @@ run-test:
     - docker cp postman-tests-newman:/app/report.json ./results/report.json
   after_script:
     - docker compose down # Ensure all stopped containers are deleted
+    - echo "docker compose down completed"
+    - echo "Cleaning up other resources..."
   allow_failure: true
