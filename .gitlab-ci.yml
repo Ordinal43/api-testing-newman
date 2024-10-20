@@ -19,5 +19,6 @@ run-test:
   script:
     - docker compose up --exit-code-from postman-tests-newman
     - docker cp postman-tests-newman:/app/report.json ./results/report.json
-    - docker compose down # Remember to run this to delete all container state!
+  after_script:
+    - docker compose down # Ensure all stopped containers are deleted
   allow_failure: true
