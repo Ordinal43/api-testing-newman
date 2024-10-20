@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "ecf7bf89-28b6-4d64-abce-41714fdab1d9",
+		"name": "Test-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7445434"
+	},
+	"item": [
+		{
+			"name": "Simple GET Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Hello to foo/bar\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/foo/bar",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"foo",
+						"bar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

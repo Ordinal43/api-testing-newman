@@ -1,0 +1,15 @@
+name: api-testing
+services:
+  postman-tests-api:
+    container_name: postman-tests-api
+    image: vad1mo/hello-world-rest
+    platform: linux/amd64
+  postman-tests-newman:
+    container_name: postman-tests-newman
+    image: postman/newman
+    entrypoint: sh
+    command: /src/run-test.sh
+    volumes:
+      - ./src:/src
+    depends_on:
+      - postman-tests-api
