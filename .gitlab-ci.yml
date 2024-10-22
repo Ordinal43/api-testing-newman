@@ -7,15 +7,13 @@ workflow:
       when: always
     - when: never
 
-run-test:
+test:run-test:
   stage: test
   tags:
     - mac-m1
   artifacts:
     paths:
       - results/report.html
-  image:
-    name: ghcr.io/ordinal43/java-17-gradle:latest
   before_script:
     - mkdir -p ./results
   script:
