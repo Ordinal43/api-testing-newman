@@ -15,12 +15,13 @@ test:run-test:
     paths:
       - results/report.html
   before_script:
+    - docker compose down # Ensure no dangling docker compose session.
     - mkdir -p ./results
   script:
     - docker compose up --exit-code-from postman-tests-newman
     - docker cp postman-tests-newman:/app/report.html ./results/report.html
   after_script:
-    - docker compose down # Ensure all stopped containers are deleted
+    - docker compose down # Ensure all stopped containers are deleted.
     - echo "docker compose down completed"
     - echo "Cleaning up other resources..."
   allow_failure: true
