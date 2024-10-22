@@ -35,10 +35,10 @@ Newman Automation
     ```
 4. Let the test run, then extract the results from inside the container to anywhere you want:
     ```bash
-    docker cp postman-tests-newman:/app/report.json </your/target/directory>/report.json
+    docker cp postman-tests-newman:/app/report.html </your/target/directory>/report.html
     ```
-5. IMPORTANT: Don't forget to shut down the docker compose by running
+5. IMPORTANT: Don't forget to shut down the docker compose by running:
     ```bash
-    docker compose up
+    docker compose down
     ```
    If you don't do this the container will remain active and store the previous state.
