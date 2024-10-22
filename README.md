@@ -4,6 +4,8 @@ This project is a simple automation test for Postman APIs made using **Newman** 
 
 This project uses the [vad1mo/hello-world-rest](https://hub.docker.com/r/vad1mo/hello-world-rest) Docker image for the REST API.
 
+### [Test Report Link Here](http://newman-report-s3-bucket-bryanr.s3-website.us-east-2.amazonaws.com/)
+
 ## Prerequisites
 
 - [Docker Engine](https://docs.docker.com/engine/install/)
