@@ -1,5 +1,6 @@
 stages:
   - test
+  - after-test
 
 workflow:
   rules:
@@ -24,4 +25,30 @@ test:run-test:
     - docker compose down # Ensure all stopped containers are deleted.
     - echo "docker compose down completed"
     - echo "Cleaning up other resources..."
+  allow_failure: true
+
+after-test:upload-results:
+  stage: after-test
+  tags:
+    - mac-m1-docker
+  image:
+    name: ghcr.io/ordinal43/aws-cli:latest
+  variables:
+    ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+    SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+    ARN_ROLE: $AWS_ARN_ROLE
+    BUCKET_NAME: $AWS_S3_BUCKET_NAME
+    S3_PROFILE_NAME: s3-user
+  before_script:
+    - |
+      aws configure set aws_access_key_id $ACCESS_KEY_ID
+      aws configure set aws_secret_access_key $SECRET_ACCESS_KEY
+      aws configure set output json
+      aws configure set region us-west-2 --profile $S3_PROFILE_NAME
+      aws configure set role_arn $ARN_ROLE --profile $S3_PROFILE_NAME
+      aws configure set source_profile default --profile $S3_PROFILE_NAME
+    - cat ~/.aws/config
+  script:
+    - echo "Upload results/report.html of latest run into S3 bucket"
+    - aws s3 cp results/report.html $BUCKET_NAME/index.html --region us-west-2 --only-show-errors --profile $S3_PROFILE_NAME
   allow_failure: true
