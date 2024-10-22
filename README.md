@@ -2,7 +2,7 @@
 
 This project is a simple automation test for Postman APIs made using **Newman** and **Docker Compose**.
 
-This project uses the [vad1mo/hello-world-rest](https://hub.docker.com/r/vad1mo/hello-world-rest) docker image for the REST API.
+This project uses the [vad1mo/hello-world-rest](https://hub.docker.com/r/vad1mo/hello-world-rest) Docker image for the REST API.
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ Newman Automation
         └── run-test.sh                 # Script to run the test
 ```
 
-## Setup and running the test
+## Setting up and running the test
 
 1. Clone the Repository:
     ```bash
