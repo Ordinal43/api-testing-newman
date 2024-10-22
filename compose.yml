@@ -6,7 +6,7 @@ services:
     platform: linux/amd64
   postman-tests-newman:
     container_name: postman-tests-newman
-    image: postman/newman
+    image: dannydainton/htmlextra
     entrypoint: sh
     command: /src/run-test.sh
     volumes:

@@ -13,14 +13,14 @@ run-test:
     - mac-m1
   artifacts:
     paths:
-      - results/report.json
+      - results/report.html
   image:
     name: ghcr.io/ordinal43/java-17-gradle:latest
   before_script:
     - mkdir -p ./results
   script:
     - docker compose up --exit-code-from postman-tests-newman
-    - docker cp postman-tests-newman:/app/report.json ./results/report.json
+    - docker cp postman-tests-newman:/app/report.html ./results/report.html
   after_script:
     - docker compose down # Ensure all stopped containers are deleted
     - echo "docker compose down completed"
